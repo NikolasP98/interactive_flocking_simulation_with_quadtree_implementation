@@ -35,7 +35,7 @@ export default class Particle {
 		frameHeight: null,
 	};
 
-	constructor(x = 0, y = 0, color = 'white') {
+	constructor(x = 0, y = 0, color = '#1849c6') {
 		this.position = new Vector(x, y);
 		this.velocity = new Vector(Math.random(), Math.random()).setMagnitude(
 			Math.random() * 4 - 2
@@ -109,7 +109,7 @@ export default class Particle {
 
 	static drawWalls() {
 		if (settings.debugMapLimits && settings.closedMap) {
-			ctx.strokeStyle = '#fff';
+			ctx.strokeStyle = '#121613';
 			ctx.beginPath();
 
 			ctx.rect(
@@ -373,7 +373,7 @@ export default class Particle {
 
 	show() {
 		ctx.fillStyle = this.color;
-		ctx.strokeStyle = 'rgba(0,0,0)';
+		ctx.strokeStyle = '#121613';
 		this.drawShape(settings.shape);
 	}
 

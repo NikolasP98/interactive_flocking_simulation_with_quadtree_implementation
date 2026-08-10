@@ -6,7 +6,7 @@ import QuadTree from './classes/quadtree.js';
 const canvas = document.getElementById('canvas');
 export const ctx = canvas.getContext('2d');
 
-let qtree, gui;
+let qtree, gui, frame;
 let particlesArray = [];
 
 const mouse = {
@@ -20,6 +20,9 @@ const setup = () => {
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 	particlesArray = [];
+	for (let i = 0; i < 72; i++) {
+		particlesArray.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+	}
 
 	qtree = new QuadTree({
 		x: 0,
@@ -30,7 +33,8 @@ const setup = () => {
 
 	QuadTree.debugger(gui);
 	Particle.debugger(gui);
-	window.requestAnimationFrame(animate);
+	cancelAnimationFrame(frame);
+	frame = window.requestAnimationFrame(animate);
 };
 
 // animation loop runs indefinately
@@ -65,7 +69,7 @@ const animate = () => {
 
 	qtree.draw(ctx);
 
-	window.requestAnimationFrame(animate);
+	frame = window.requestAnimationFrame(animate);
 };
 
 /* ---------------------------
