@@ -15,7 +15,7 @@ export default class QuadTree {
 			const quadTreeSettings = gui.addFolder('QuadTree');
 			quadTreeSettings
 				.add(settings, 'showQuadtree')
-				.name('Show Quadtree');
+				.name(window.pnLocale === 'es' ? 'Mostrar quadtree' : 'Show Quadtree');
 		}
 	}
 

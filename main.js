@@ -3,6 +3,9 @@ import GUI from 'lil-gui';
 import Particle from './classes/particle.js';
 import QuadTree from './classes/quadtree.js';
 
+const locale = new URLSearchParams(window.location.search).get('lang') === 'es' ? 'es' : 'en';
+window.pnLocale = locale;
+
 const canvas = document.getElementById('canvas');
 export const ctx = canvas.getContext('2d');
 
@@ -78,7 +81,7 @@ const animate = () => {
 
 // run setup function
 window.onload = () => {
-	gui = new GUI();
+	gui = new GUI({ title: locale === 'es' ? 'Controles' : 'Controls' });
 
 	// add particles to clicked coordinate
 	canvas.addEventListener('click', (e) => {

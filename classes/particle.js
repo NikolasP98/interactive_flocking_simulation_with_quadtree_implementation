@@ -58,51 +58,53 @@ export default class Particle {
 	static debugger(gui) {
 		if (!this.debug) {
 			this.debug = true;
-			const boidFolder = gui.addFolder('Boid');
+			const es = window.pnLocale === 'es';
+			const t = (english, spanish) => es ? spanish : english;
+			const boidFolder = gui.addFolder(t('Boid', 'Boid'));
 
-			boidFolder.add(settings, 'cohesion', 0.1, 3, 0.1).name('Cohesion');
-			boidFolder.add(settings, 'showCohesion').name('Show Cohesion');
+			boidFolder.add(settings, 'cohesion', 0.1, 3, 0.1).name(t('Cohesion', 'Cohesión'));
+			boidFolder.add(settings, 'showCohesion').name(t('Show Cohesion', 'Mostrar cohesión'));
 			boidFolder
 				.add(settings, 'alignment', 0.1, 3, 0.1)
-				.name('Alignment');
-			boidFolder.add(settings, 'showAlignment').name('Show Alignment');
+				.name(t('Alignment', 'Alineación'));
+			boidFolder.add(settings, 'showAlignment').name(t('Show Alignment', 'Mostrar alineación'));
 			boidFolder
 				.add(settings, 'separation', 0.1, 3, 0.1)
-				.name('Separation');
-			boidFolder.add(settings, 'showSeparation').name('Show Separation');
+				.name(t('Separation', 'Separación'));
+			boidFolder.add(settings, 'showSeparation').name(t('Show Separation', 'Mostrar separación'));
 			boidFolder
 				.add(settings, 'perception', 0.1, 50, 0.1)
-				.name('Perception Radius');
+				.name(t('Perception Radius', 'Radio de percepción'));
 			boidFolder
 				.add(settings, 'shape', {
 					// TODO: Correctly implement ghost image
 					// Ghost: 'ghost',
-					Triangle: 'triangle',
-					Circle: 'circle',
-					Square: 'square',
+					[t('Triangle', 'Triángulo')]: 'triangle',
+					[t('Circle', 'Círculo')]: 'circle',
+					[t('Square', 'Cuadrado')]: 'square',
 				})
-				.name('Boid Shape');
+				.name(t('Boid Shape', 'Forma del boid'));
 			boidFolder
 				.add(settings, 'sizeRandomness', 0, 10, 0.1)
-				.name('Size Randomness');
+				.name(t('Size Randomness', 'Variación de tamaño'));
 
-			const mapFolder = gui.addFolder('Map');
+			const mapFolder = gui.addFolder(t('Map', 'Mapa'));
 
 			mapFolder
 				.add(settings, 'closedMap')
-				.name('Repel from Walls')
+				.name(t('Repel from Walls', 'Repeler desde bordes'))
 				.onChange(() => {
 					showWalls.enable(showWalls._disabled);
 				});
 			mapFolder
 				.add(settings, 'mapBoundary', 10, 100, 1)
-				.name('Wall repel distance');
+				.name(t('Wall repel distance', 'Distancia al borde'));
 			mapFolder
 				.add(settings, 'mapRepel', 0.1, 3, 0.1)
-				.name('Wall repel intensity');
+				.name(t('Wall repel intensity', 'Intensidad del borde'));
 			const showWalls = mapFolder
 				.add(settings, 'debugMapLimits')
-				.name('Show Walls')
+				.name(t('Show Walls', 'Mostrar bordes'))
 				.disable();
 		}
 	}
