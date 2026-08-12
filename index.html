@@ -15,6 +15,15 @@
 		</header>
 		<div class="instruction">CLICK FIELD TO ADD A FLOCK · USE PANEL TO EXPOSE EACH RULE ↗</div>
 		<canvas id="canvas"></canvas>
+		<script>
+			if (new URLSearchParams(location.search).get('lang') === 'es') {
+				document.documentElement.lang = 'es';
+				document.title = 'Reglas locales, movimiento compartido · Laboratorio Pinonite';
+				document.querySelector('.docket div').innerHTML = '<strong>PINONITE / LABORATORIO</strong><span>REGLAS LOCALES, MOVIMIENTO COMPARTIDO</span>';
+				document.querySelector('.docket > span').textContent = 'BOIDS + QUADTREE · EN VIVO';
+				document.querySelector('.instruction').textContent = 'CLIC PARA AÑADIR UNA BANDADA · USA EL PANEL PARA EXPLORAR CADA REGLA ↗';
+			}
+		</script>
 		<script type="module" src="./main.js"></script>
 	</body>
 </html>
